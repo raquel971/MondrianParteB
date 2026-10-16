@@ -1,9 +1,18 @@
+let lineOffset = 0;
+let targetLineOffset = 0;
+
 function setup() {
   createCanvas(800, 784);
   background(245);
+  targetLineOffset = random(-10, 10);
 }
 
 function draw() {
+  if (frameCount % 90 === 0) {
+    targetLineOffset = random(-10, 10);
+  }
+  lineOffset = lerp(lineOffset, targetLineOffset, 0.06);
+
   fill(255,0,0);
   noStroke();rect(0, 0, 362, 310);
 
@@ -18,7 +27,7 @@ function draw() {
   line(363,0,363,784);
 
   strokeWeight(16);
-  line(0,310,800,310);
+  line(0,310 + lineOffset,800,310 + lineOffset);
 
   strokeWeight(16);
   line(0,502,800,502);
@@ -32,5 +41,3 @@ function draw() {
   strokeWeight(15);
   line(363,760,615,760);
 }
-
-
